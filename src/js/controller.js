@@ -48,22 +48,19 @@ const controlSearchResults = async function () {
     //Load search results
     await model.loadSearchResults(query);
 
-    //render results
-    // resultsView.render(model.state.search.results);
+    //Render results
     resultsView.render(model.getSearchResultsPage());
 
-    //render intial pagination buttons
+    //Render intial pagination buttons
     paginationView.render(model.state.search);
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 };
 
 const controlPagination = function (goToPage) {
-  //render new results
+  //Render new results
   resultsView.render(model.getSearchResultsPage(goToPage));
 
-  //render new pagination buttons
+  //Render new pagination buttons
   paginationView.render(model.state.search);
 };
 
@@ -71,8 +68,7 @@ const controlServings = function (newServings) {
   //Update the recipe servings(in state)
   model.updateServings(newServings);
 
-  // Update the recipe view
-  // recipeView.render(model.state.recipe);
+  //Update the recipe view
   recipeView.update(model.state.recipe);
 };
 
@@ -99,7 +95,6 @@ const controlAddRecipe = async function (newRecipe) {
 
     //Upload the new recipe data
     await model.uploadRecipe(newRecipe);
-    console.log(model.state.recipe);
 
     //Render recipe
     recipeView.render(model.state.recipe);
@@ -118,7 +113,6 @@ const controlAddRecipe = async function (newRecipe) {
       addRecipeView.toggleWindow(), MODAL_CLOSE_SEC * 1000;
     });
   } catch (err) {
-    console.error(err);
     addRecipeView.renderError(err.message);
   }
 };
